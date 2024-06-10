@@ -1,0 +1,104 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Leche",
+      "description": "Leche líquida",
+      "code": "abc123",
+      "price": 1000,
+      "status": true,
+      "stock": 20,
+      "category": "Lácteo"
+    },
+    {
+      "id": 2,
+      "title": "Queso",
+      "description": "Queso gouda en rebanadas",
+      "code": "bcd234",
+      "price": 2500,
+      "status": true,
+      "stock": 15,
+      "category": "Lácteo"
+    },
+    {
+      "id": 3,
+      "title": "Yogurt",
+      "description": "Yogurt natural sin azúcar",
+      "code": "cde345",
+      "price": 1200,
+      "status": true,
+      "stock": 30,
+      "category": "Lácteo"
+    },
+    {
+      "id": 4,
+      "title": "Mantequilla",
+      "description": "Mantequilla sin sal",
+      "code": "def456",
+      "price": 2200,
+      "status": true,
+      "stock": 25,
+      "category": "Lácteo"
+    },
+    {
+      "id": 5,
+      "title": "Pan",
+      "description": "Pan integral de trigo",
+      "code": "efg567",
+      "price": 1500,
+      "status": true,
+      "stock": 40,
+      "category": "Panadería"
+    },
+    {
+      "id": 6,
+      "title": "Jamón",
+      "description": "Jamón serrano",
+      "code": "fgh678",
+      "price": 3000,
+      "status": true,
+      "stock": 10,
+      "category": "Carnes frías"
+    },
+    {
+      "id": 7,
+      "title": "Cereal",
+      "description": "Cereal de avena con miel",
+      "code": "ghi789",
+      "price": 1800,
+      "status": true,
+      "stock": 50,
+      "category": "Desayuno"
+    },
+    {
+      "id": 8,
+      "title": "Galletas",
+      "description": "Galletas de chocolate",
+      "code": "hij890",
+      "price": 900,
+      "status": true,
+      "stock": 60,
+      "category": "Snacks"
+    },
+    {
+      "id": 9,
+      "title": "Jugo",
+      "description": "Jugo de naranja natural",
+      "code": "ijk901",
+      "price": 1200,
+      "status": true,
+      "stock": 30,
+      "category": "Bebidas"
+    },
+    {
+      "id": 10,
+      "title": "Café",
+      "description": "Café molido de Colombia",
+      "code": "jkl012",
+      "price": 5000,
+      "status": true,
+      "stock": 20,
+      "category": "Bebidas"
+    }
+  ]
+}

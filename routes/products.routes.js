@@ -5,11 +5,11 @@ const { products } = productsData;
 
 const productRouter = express.Router();
 
-productRouter.get("/api/products", (req, res) => {
+productRouter.get("/", (req, res) => {
   res.json(products);
 });
 
-productRouter.post("/api/products", (req, res) => {
+productRouter.post("/", (req, res) => {
   const {
     title,
     description,
@@ -51,7 +51,7 @@ productRouter.post("/api/products", (req, res) => {
   }
 });
 
-productRouter.get("/api/products/:id", (req, res) => {
+productRouter.get("/:id", (req, res) => {
   const productSeleted = products.find(
     (product) => product.id == req.params.id
   );
@@ -62,7 +62,14 @@ productRouter.get("/api/products/:id", (req, res) => {
   }
 });
 
-productRouter.put("/api/products/:id", (req, res) => {
+productRouter.put("/:id", (req, res) => {
+  const productSelected = products.find(
+    (product) => product.id == req.params.id
+  );
+  if (!productSelected) {
+    return res.status(404).send("Producto no encontrado");
+  }
+
   const {
     title,
     description,
@@ -74,9 +81,6 @@ productRouter.put("/api/products/:id", (req, res) => {
     thumbnails,
   } = req.body;
 
-  const productSelected = products.find(
-    (product) => product.id == req.params.id
-  );
   productSelected.title = title || productSelected.title;
   productSelected.description = description || productSelected.description;
   productSelected.code = code || productSelected.code;
@@ -88,7 +92,7 @@ productRouter.put("/api/products/:id", (req, res) => {
   res.json(productSelected);
 });
 
-productRouter.delete("/api/products/:id", (req, res) => {
+productRouter.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const originalLength = products.length;
   const filteredProducts = products.filter((product) => product.id !== id);

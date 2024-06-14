@@ -1,9 +1,10 @@
 import express from "express";
 const productRouter = express.Router();
+import { ProductManager } from "../controllers/product-manager.js";
+const productManager = new ProductManager();
 
 productRouter.get("/", (req, res) => {
-  const productos = new ProductManager();
-  res.status(200).json(productos.getProducts());
+  res.status(200).json(productManager.getProducts());
 });
 
 productRouter.post("/", (req, res) => {
@@ -17,28 +18,29 @@ productRouter.post("/", (req, res) => {
     category,
     thumbnails,
   } = req.body;
-  const producto = new ProductManager();
+
   try {
-    producto.addProduct(
+    productManager.addProduct(
       title,
       description,
       code,
       price,
       status,
       stock,
-      category
+      category,
+      thumbnails
     );
+    res.status(200).send("Producto creado correctamente");
   } catch (err) {
-    res.send(400).send("Ha habido un problema");
+    res.status(400).send("Ha habido un problema");
     console.log(err);
   }
-  res.status(200).send("Producto creado correctamente");
 });
 
-productRouter.get("/:id", (req, res) => {
-  const productManager = new ProductManager();
+productRouter.get("/:pid", (req, res) => {
   try {
-    const productById = productManager.getProductById(req.body.id);
+    const pid = req.params.pid;
+    const productById = productManager.getProductById(pid);
     res.status(200).json(productById);
   } catch (err) {
     console.log(err);
@@ -46,9 +48,9 @@ productRouter.get("/:id", (req, res) => {
   }
 });
 
-productRouter.put("/:id", (req, res) => {
+productRouter.put("/:pid", (req, res) => {
+  const productId = req.params.pid;
   const {
-    id,
     title,
     description,
     code,
@@ -58,10 +60,10 @@ productRouter.put("/:id", (req, res) => {
     category,
     thumbnails,
   } = req.body;
-  const productManager = new ProductManager();
+
   try {
     productManager.updateProductById(
-      id,
+      productId,
       title,
       description,
       code,
@@ -78,10 +80,9 @@ productRouter.put("/:id", (req, res) => {
   }
 });
 
-productRouter.delete("/:id", (req, res) => {
-  const productManager = new ProductManager();
+productRouter.delete("/:pid", (req, res) => {
   try {
-    productManager.deleteProductById(req.params.id);
+    productManager.deleteProductById(req.params.pid);
     res.status(200).send("Producto eliminado correctamente");
   } catch (err) {
     console.log(err);

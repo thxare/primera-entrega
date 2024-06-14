@@ -1,20 +1,20 @@
 import express from "express";
-import { v4 as uuidv4 } from "uuid";
-import productsData from "../productsData.json" assert { type: "json" };
-const { products } = productsData;
 const cartRouter = express.Router();
-const carts = [];
+import { CartManager } from "../controllers/cart-manager.js";
+const cartManager = new CartManager();
 
 cartRouter.post("/", (req, res) => {
-  const id = uuidv4();
-  const cart = { id, products };
-  carts.push(cart);
-  res.send(200).json(cart);
+  cartManager.addCart(req.params.id, req.params.quantity);
+  res.send(200).send("Se ha agregado un nuevo carro");
 });
 
-cartRouter.get("/:id", (req, res) => {
-  const cartSeleted = carts.find((cart) => cart.id == req.params.id);
-  res.json(cartSeleted);
+cartRouter.get("/:cid", (req, res) => {
+  try {
+    const cartById = cartManager.getCartById(cid);
+    res.status(200).json(cartById);
+  } catch (err) {
+    res.status(400).send("Error al ver el carro");
+  }
 });
 
 cartRouter.post("/:cid/product/:pid", (req, res) => {

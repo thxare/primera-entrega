@@ -1,10 +1,13 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-class ProductManager {
+export class ProductManager {
   static uilId = 0;
   constructor() {
-    this.filePath = path.join(__dirname, "products.json");
+    this.filePath = path.join(__dirname, "../productos.json");
     this.loadProducts();
   }
   loadProducts() {
@@ -46,17 +49,27 @@ class ProductManager {
     category,
     thumbnails
   ) {
+    const nuevoProducto = {
+      id: ++ProductManager.uilId,
+      title,
+      description,
+      code,
+      price,
+      status,
+      stock,
+      category,
+      thumbnails,
+    };
     if (
-      !title ||
-      !description ||
-      !code ||
-      !price ||
-      !stock ||
-      !category ||
-      !status
+      title === undefined ||
+      description === undefined ||
+      code === undefined ||
+      price === undefined ||
+      stock === undefined ||
+      category === undefined ||
+      status === undefined
     ) {
-      console.log("Todos los campos son obligatorios");
-      return;
+      throw Error("Todos los campos son obligatios");
     }
 
     if (
@@ -68,20 +81,10 @@ class ProductManager {
       typeof stock !== "number" ||
       typeof category !== "string"
     ) {
-      console.log("Producto no cumple con el tipo de dato requerido");
-      return;
+      throw Error("Producto no cumple con el tipo de dato requerido");
     }
 
-    const nuevoProducto = {
-      id: ++ProductManager.uilId,
-      title,
-      description,
-      code,
-      price,
-      status,
-      stock,
-      category,
-    };
+    console.log(title);
     this.products.push(nuevoProducto);
     this.saveProducts();
   }
@@ -109,7 +112,7 @@ class ProductManager {
     category,
     thumbnails
   ) {
-    const product = this.products.find((product) => product.id === id);
+    const product = this.products.find((product) => product.id === parseInt(id));
     if (!product) {
       throw new Error("Producto no encontrado");
     }

@@ -5,7 +5,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export class ProductManager {
-  static uilId = 0;
+  static ultId = 0;
   constructor() {
     this.filePath = path.join(__dirname, "../productos.json");
     this.loadProducts();
@@ -24,7 +24,7 @@ export class ProductManager {
       (max, product) => (product.id > max ? product.id : max),
       0
     );
-    ProductManager.uilId = maxId;
+    ProductManager.ultId = maxId;
   }
 
   saveProducts() {
@@ -50,7 +50,7 @@ export class ProductManager {
     thumbnails
   ) {
     const nuevoProducto = {
-      id: ++ProductManager.uilId,
+      id: ++ProductManager.ultId,
       title,
       description,
       code,
@@ -83,8 +83,6 @@ export class ProductManager {
     ) {
       throw Error("Producto no cumple con el tipo de dato requerido");
     }
-
-    console.log(title);
     this.products.push(nuevoProducto);
     this.saveProducts();
   }

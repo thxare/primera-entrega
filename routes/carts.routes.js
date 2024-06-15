@@ -10,7 +10,7 @@ cartRouter.post("/", (req, res) => {
 
 cartRouter.get("/:cid", (req, res) => {
   try {
-    const cartById = cartManager.getCartById(cid);
+    const cartById = cartManager.getCartById(req.params.cid);
     res.status(200).json(cartById);
   } catch (err) {
     res.status(400).send("Error al ver el carro");

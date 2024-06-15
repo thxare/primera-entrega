@@ -69,7 +69,7 @@ export class CartManager {
     return this.carts;
   }
   getCartById(id) {
-    const cart = this.carts.find((cart = cart.id === parseInt(id)));
+    const cart = this.carts.find((cart) => cart.id === parseInt(id));
     return cart;
   }
   deleteCartById(id) {

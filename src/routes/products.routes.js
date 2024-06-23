@@ -1,13 +1,13 @@
 import express from "express";
 const productRouter = express.Router();
 import { ProductManager } from "../controllers/product-manager.js";
-const productManager = new ProductManager();
+const productManager = new ProductManager("./src/models/productos.json");
 
-productRouter.get("/", (req, res) => {
-  res.status(200).json(productManager.getProducts());
+productRouter.get("/", async (req, res) => {
+  res.status(200).json(await productManager.getProducts());
 });
 
-productRouter.post("/", (req, res) => {
+productRouter.post("/", async (req, res) => {
   const {
     title,
     description,
@@ -20,7 +20,7 @@ productRouter.post("/", (req, res) => {
   } = req.body;
 
   try {
-    productManager.addProduct(
+    await productManager.addProduct(
       title,
       description,
       code,
@@ -37,10 +37,11 @@ productRouter.post("/", (req, res) => {
   }
 });
 
-productRouter.get("/:pid", (req, res) => {
+productRouter.get("/:pid", async (req, res) => {
   try {
     const pid = req.params.pid;
-    const productById = productManager.getProductById(pid);
+    console.log(pid);
+    const productById = await productManager.getProductById(pid);
     res.status(200).json(productById);
   } catch (err) {
     console.log(err);
@@ -48,7 +49,7 @@ productRouter.get("/:pid", (req, res) => {
   }
 });
 
-productRouter.put("/:pid", (req, res) => {
+productRouter.put("/:pid", async (req, res) => {
   const productId = req.params.pid;
   const {
     title,
@@ -62,7 +63,7 @@ productRouter.put("/:pid", (req, res) => {
   } = req.body;
 
   try {
-    productManager.updateProductById(
+    await productManager.updateProductById(
       productId,
       title,
       description,
@@ -80,9 +81,9 @@ productRouter.put("/:pid", (req, res) => {
   }
 });
 
-productRouter.delete("/:pid", (req, res) => {
+productRouter.delete("/:pid", async (req, res) => {
   try {
-    productManager.deleteProductById(req.params.pid);
+    await productManager.deleteProductById(req.params.pid);
     res.status(200).send("Producto eliminado correctamente");
   } catch (err) {
     console.log(err);

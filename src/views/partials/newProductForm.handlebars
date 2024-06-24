@@ -1,0 +1,39 @@
+<div class="containerCard">
+    <div class="cardForm">
+        <div class="cardHeader">
+            <h3>Nuevo Producto</h3>
+        </div>
+        <div class="cardBody">
+            <form action="/api/products" method="POST" class="formProduct">
+                <input type="text" id="title" name="title" placeholder="Titulo">
+                <input type="text" id="description" name="description" placeholder="Descripción">
+                <input type="number" id="precio" name="precio" placeholder="Precio">
+                <input type="text" id="img" name="img">
+                <input type="number" id="stock" name="stock" placeholder="Stock">
+                <input type="text" id="category" name="category" placeholder="Categoría">
+                <div class="status">
+                    <label>Estado</label>
+                        <div class="checkbox-wrapper-12">
+                        <div class="cbx">
+                            <input checked="" type="checkbox" id="cbx-12">
+                            <label for="cbx-12"></label>
+                            <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+                                <path d="M2 8.36364L6.23077 12L13 2"></path>
+                            </svg>
+                        </div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <filter id="goo-12">
+                                    <feGaussianBlur result="blur" stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+                                    <feColorMatrix result="goo-12" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" mode="matrix" in="blur"></feColorMatrix>
+                                    <feBlend in2="goo-12" in="SourceGraphic"></feBlend>
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                <button class="submit" type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>

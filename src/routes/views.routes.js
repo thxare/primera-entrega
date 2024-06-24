@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-const router = Router();
+const viewsRouter = Router();
 
-router.get("/realtimeproducts", async (req, res) => {
+viewsRouter.get("/realtimeproducts", async (req, res) => {
   res.render("realTimeProducts");
 });
 
-export default router;
+export default viewsRouter;

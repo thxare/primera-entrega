@@ -2,7 +2,7 @@ import express from "express";
 import { engine } from "express-handlebars";
 import { cartRouter } from "./src/routes/carts.routes.js";
 import { productRouter } from "./src/routes/products.routes.js";
-import router from "./src/routes/views.routes.js";
+import viewsRouter from "./src/routes/views.routes.js";
 
 const app = express();
 const PORT = 8081;
@@ -20,11 +20,20 @@ app.set("views", "./src/views");
 //Rutas
 app.use("/api/carts", cartRouter);
 app.use("/api/products", productRouter);
-app.use("/", router);
+app.use("/", viewsRouter);
 
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
   console.log(`Escuchando en el puerto ${PORT}`);
 });
 
 import { ProductManager } from "./src/controllers/product-manager.js";
-const productManager = new ProductManager("./models/producto.json");
+import { Server } from "socket.io";
+const productManager = new ProductManager("./src/models/productos.json");
+
+const io = new Server(httpServer);
+
+io.on("connection", async (socket) => {
+  console.log("Un cliente conectado");
+
+  socket.emit("productos", await productManager.getProducts());
+});

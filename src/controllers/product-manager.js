@@ -153,7 +153,6 @@ export class ProductManager {
 
   async deleteProductById(id) {
     try {
-      console.log("El id: " + id);
       const arrProducts = await this.loadProducts();
       const index = arrProducts.findIndex(
         (product) => product.id === parseInt(id)
@@ -162,7 +161,7 @@ export class ProductManager {
         throw new Error("Producto no encontrado");
       }
       arrProducts.splice(index, 1);
-      await this.saveProducts();
+      await this.saveProducts(arrProducts);
     } catch (err) {
       console.log("Ha habido un error");
       throw err;

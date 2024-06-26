@@ -1,16 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Leche",
-    "description": "Leche liquida",
-    "code": "idk",
-    "price": 2000,
-    "status": false,
-    "stock": 45,
-    "category": "Lacteo",
-    "thumbnails": []
-  },
-  {
     "id": 2,
     "title": "pERA",
     "description": "PERA",

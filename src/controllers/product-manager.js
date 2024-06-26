@@ -19,19 +19,9 @@ export class ProductManager {
     }
   }
 
-  async updateUid() {
-    const arrProducts = await this.loadProducts();
-
-    const maxId = arrProducts.reduce(
-      (max, product) => (product.id > max ? product.id : max),
-      0
-    );
-    ProductManager.ultId = maxId;
-  }
-
   async saveProducts(arrProducts) {
     try {
-      await fs.writeFileSync(
+      await fs.writeFile(
         this.path,
         JSON.stringify(arrProducts, null, 2),
         "utf8"
@@ -50,9 +40,18 @@ export class ProductManager {
     status = true,
     stock,
     category,
-    thumbnails
+    thumbnails = []
   ) {
     const arrProducts = await this.loadProducts();
+    price  = parseInt(price);
+    stock = parseInt(stock);
+    if (arrProducts.length > 0) {
+      ProductManager.ultId = arrProducts.reduce(
+        (maxId, product) => Math.max(maxId, product.id),
+        0
+      );
+    }
+
     const nuevoProducto = {
       id: ++ProductManager.ultId,
       title,
@@ -64,6 +63,11 @@ export class ProductManager {
       category,
       thumbnails,
     };
+    if (arrProducts.some((item) => item.code === code)) {
+      console.log("El código debe ser único");
+      return;
+    }
+
     if (
       title === undefined ||
       description === undefined ||
@@ -88,7 +92,7 @@ export class ProductManager {
       throw Error("Producto no cumple con el tipo de dato requerido");
     }
     arrProducts.push(nuevoProducto);
-    await this.saveProducts(products);
+    await this.saveProducts(arrProducts);
   }
 
   async getProducts() {
@@ -149,6 +153,7 @@ export class ProductManager {
 
   async deleteProductById(id) {
     try {
+      console.log("El id: " + id);
       const arrProducts = await this.loadProducts();
       const index = arrProducts.findIndex(
         (product) => product.id === parseInt(id)

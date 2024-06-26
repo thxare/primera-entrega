@@ -9,5 +9,27 @@
     "stock": 45,
     "category": "Lacteo",
     "thumbnails": []
+  },
+  {
+    "id": 2,
+    "title": "pERA",
+    "description": "PERA",
+    "code": "PERO134",
+    "price": 1433,
+    "status": true,
+    "stock": 432,
+    "category": "pERA",
+    "thumbnails": []
+  },
+  {
+    "id": 3,
+    "title": "Manzana",
+    "description": "Manzana roja",
+    "code": "324Man",
+    "price": 4929,
+    "status": true,
+    "stock": 3,
+    "category": "Fruta",
+    "thumbnails": []
   }
 ]

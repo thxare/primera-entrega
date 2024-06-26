@@ -18,6 +18,7 @@ productRouter.post("/", async (req, res) => {
     category,
     thumbnails,
   } = req.body;
+  // console.log(title, description, code, price, stock, category, status);
 
   try {
     await productManager.addProduct(

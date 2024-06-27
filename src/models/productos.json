@@ -1,27 +1,5 @@
 [
   {
-    "id": 3,
-    "title": "Manzana",
-    "description": "Manzana roja",
-    "code": "324Man",
-    "price": 4929,
-    "status": true,
-    "stock": 3,
-    "category": "Fruta",
-    "thumbnails": []
-  },
-  {
-    "id": 4,
-    "title": "Pina",
-    "description": "pina",
-    "code": "432",
-    "price": 9393,
-    "status": true,
-    "stock": 3939,
-    "category": "fruta",
-    "thumbnails": []
-  },
-  {
     "id": 5,
     "title": "Leche",
     "description": "Leche",
@@ -63,17 +41,6 @@
     "status": true,
     "stock": 34,
     "category": "Comida",
-    "thumbnails": []
-  },
-  {
-    "id": 9,
-    "title": "mayo",
-    "description": "mayo",
-    "code": "mayo",
-    "price": 9483,
-    "status": true,
-    "stock": 98,
-    "category": "mauo",
     "thumbnails": []
   },
   {

@@ -4,7 +4,20 @@ import { ProductManager } from "../controllers/product-manager.js";
 const productManager = new ProductManager("./src/models/productos.json");
 
 productRouter.get("/", async (req, res) => {
-  res.status(200).json(await productManager.getProducts());
+  try {
+    const limit = req.query.limit;
+    const products = await productManager.getProducts();
+    if (limit) {
+      res.json(products.slice(0, limit));
+    } else {
+      res.json(products);
+    }
+  } catch (error) {
+    console.error("Error al obtener productos", error);
+    res.status(500).json({
+      error: "Error interno del servidor",
+    });
+  }
 });
 
 productRouter.post("/", async (req, res) => {

@@ -37,13 +37,14 @@ const renderProductos = (data) => {
     tdCategory.textContent = product.category;
     tr.appendChild(tdCategory);
 
-    contenedorProductos.appendChild(tr);
-  });
+    const tdDelete = document.createElement("button");
+    tdDelete.className = "btn btn-danger deleteBtn";
+    tdDelete.textContent = "x";
+    tdDelete.type = "button";
+    tdDelete.id = product.id;
+    tr.appendChild(tdDelete);
 
-  const addProductButton = document.getElementById("addProduct");
-  addProductButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    console.log("Clicked!");
+    contenedorProductos.appendChild(tr);
   });
 };
 
@@ -60,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// socket.emit("eliminarProducto", btnDeleteId);
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form.needs-validation");
 
@@ -72,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const price = document.getElementById("price").value;
     const stock = document.getElementById("stock").value;
     const category = document.getElementById("category").value;
-    const state = document.getElementById("cbx-12").checked;
+    const status = document.getElementById("cbx-12").checked;
 
     const productData = {
       title,
@@ -81,24 +84,18 @@ document.addEventListener("DOMContentLoaded", function () {
       price,
       stock,
       category,
-      state,
+      status,
     };
-    console.log(productData);
 
-    fetch("/api/products", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(productData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    socket.emit("agregarProducto", productData);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.getElementsByClassName("tableContainer");
+  container[0].addEventListener("click", function (e) {
+    if (e.target.classList.contains("deleteBtn")) {
+      socket.emit("eliminarProducto", e.target.id);
+    }
   });
 });

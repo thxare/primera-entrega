@@ -1,16 +1,5 @@
 [
   {
-    "id": 2,
-    "title": "pERA",
-    "description": "PERA",
-    "code": "PERO134",
-    "price": 1433,
-    "status": true,
-    "stock": 432,
-    "category": "pERA",
-    "thumbnails": []
-  },
-  {
     "id": 3,
     "title": "Manzana",
     "description": "Manzana roja",
@@ -19,6 +8,83 @@
     "status": true,
     "stock": 3,
     "category": "Fruta",
+    "thumbnails": []
+  },
+  {
+    "id": 4,
+    "title": "Pina",
+    "description": "pina",
+    "code": "432",
+    "price": 9393,
+    "status": true,
+    "stock": 3939,
+    "category": "fruta",
+    "thumbnails": []
+  },
+  {
+    "id": 5,
+    "title": "Leche",
+    "description": "Leche",
+    "code": "kle343",
+    "price": 43,
+    "status": true,
+    "stock": 38,
+    "category": "Lacteos",
+    "thumbnails": []
+  },
+  {
+    "id": 6,
+    "title": "Loki",
+    "description": "Loki",
+    "code": "Loki",
+    "price": 432,
+    "status": true,
+    "stock": 43,
+    "category": "PERRO",
+    "thumbnails": []
+  },
+  {
+    "id": 7,
+    "title": "Papa",
+    "description": "papas fritas",
+    "code": "939kd",
+    "price": 938,
+    "status": true,
+    "stock": 3939,
+    "category": "Verdura",
+    "thumbnails": []
+  },
+  {
+    "id": 8,
+    "title": "Ketchup",
+    "description": "ketchup",
+    "code": "939dk",
+    "price": 343,
+    "status": true,
+    "stock": 34,
+    "category": "Comida",
+    "thumbnails": []
+  },
+  {
+    "id": 9,
+    "title": "mayo",
+    "description": "mayo",
+    "code": "mayo",
+    "price": 9483,
+    "status": true,
+    "stock": 98,
+    "category": "mauo",
+    "thumbnails": []
+  },
+  {
+    "id": 10,
+    "title": "Mostaza",
+    "description": "mostaza",
+    "code": "84392",
+    "price": 329,
+    "status": true,
+    "stock": 9382,
+    "category": "comida",
     "thumbnails": []
   }
 ]

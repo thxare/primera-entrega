@@ -43,7 +43,7 @@ export class ProductManager {
     thumbnails = []
   ) {
     const arrProducts = await this.loadProducts();
-    price  = parseInt(price);
+    price = parseInt(price);
     stock = parseInt(stock);
     if (arrProducts.length > 0) {
       ProductManager.ultId = arrProducts.reduce(
@@ -123,32 +123,15 @@ export class ProductManager {
     }
   }
 
-  async updateProductById(
-    id,
-    title,
-    description,
-    code,
-    price,
-    status,
-    stock,
-    category,
-    thumbnails
-  ) {
+  async updateProductById(id, updateProduct) {
     const arrProducts = await this.loadProducts();
+    const index = arrProducts.findIndex((item) => item.id === id);
 
-    const product = arrProducts.find((product) => product.id === parseInt(id));
-    if (!product) {
+    if (index === 1) {
       throw new Error("Producto no encontrado");
     }
-    product.title = title ?? product.title;
-    product.description = description ?? product.description;
-    product.code = code ?? product.code;
-    product.price = price ?? product.price;
-    product.status = status ?? product.status;
-    product.stock = stock ?? product.stock;
-    product.category = category ?? product.category;
-    product.thumbnails = thumbnails ?? product.thumbnails;
-    await this.saveProducts();
+    arrProducts[index] = { ...arrProducts[index], ...updateProduct };
+    await this.saveProducts(arrProducts);
   }
 
   async deleteProductById(id) {

@@ -1,3 +1,4 @@
+import { Server } from "socket.io";
 import express from "express";
 import { engine } from "express-handlebars";
 import { cartRouter } from "./src/routes/carts.routes.js";
@@ -27,7 +28,6 @@ const httpServer = app.listen(PORT, () => {
 });
 
 import { ProductManager } from "./src/controllers/product-manager.js";
-import { Server } from "socket.io";
 const productManager = new ProductManager("./src/models/productos.json");
 
 const io = new Server(httpServer);
@@ -36,4 +36,25 @@ io.on("connection", async (socket) => {
   console.log("Un cliente conectado");
 
   socket.emit("productos", await productManager.getProducts());
+
+  socket.on("eliminarProducto", async (id) => {
+    await productManager.deleteProductById(id);
+    io.sockets.emit("productos", await productManager.getProducts());
+  });
+
+  socket.on(
+    "agregarProducto",
+    async ({ title, description, code, price, status, stock, category }) => {
+      await productManager.addProduct(
+        title,
+        description,
+        code,
+        price,
+        status,
+        stock,
+        category
+      );
+      io.sockets.emit("productos", await productManager.getProducts());
+    }
+  );
 });

@@ -18,7 +18,6 @@ productRouter.post("/", async (req, res) => {
     category,
     thumbnails,
   } = req.body;
-  // console.log(title, description, code, price, stock, category, status);
 
   try {
     await productManager.addProduct(
@@ -33,7 +32,7 @@ productRouter.post("/", async (req, res) => {
     );
     res.status(200).send("Producto creado correctamente");
   } catch (err) {
-    res.status(400).send("Ha habido un problema");
+    res.status(500).send("Ha habido un problema");
     console.log(err);
   }
 });
@@ -46,39 +45,20 @@ productRouter.get("/:pid", async (req, res) => {
     res.status(200).json(productById);
   } catch (err) {
     console.log(err);
-    return res.status(400).send("Ha ocurrido un error");
+    return res.status(500).send("Ha ocurrido un error");
   }
 });
 
 productRouter.put("/:pid", async (req, res) => {
   const productId = req.params.pid;
-  const {
-    title,
-    description,
-    code,
-    price,
-    status,
-    stock,
-    category,
-    thumbnails,
-  } = req.body;
+  const updateProduct = req.body;
 
   try {
-    await productManager.updateProductById(
-      productId,
-      title,
-      description,
-      code,
-      price,
-      status,
-      stock,
-      category,
-      thumbnails
-    );
+    await productManager.updateProductById(productId, updateProduct);
     res.status(200).json("Producto actualizado");
   } catch (err) {
     console.log(err);
-    return res.status(400).send("Ha habido un error");
+    return res.status(500).send("Ha habido un error");
   }
 });
 
@@ -88,7 +68,7 @@ productRouter.delete("/:pid", async (req, res) => {
     res.status(200).send("Producto eliminado correctamente");
   } catch (err) {
     console.log(err);
-    return res.status(400).send("Ha ocurrido un error al eliminar");
+    return res.status(500).send("Ha ocurrido un error al eliminar");
   }
 });
 

@@ -1,0 +1,57 @@
+[
+  {
+    "id": 5,
+    "title": "Leche",
+    "description": "Leche",
+    "code": "kle343",
+    "price": 43,
+    "status": true,
+    "stock": 38,
+    "category": "Lacteos",
+    "thumbnails": []
+  },
+  {
+    "id": 6,
+    "title": "Loki",
+    "description": "Loki",
+    "code": "Loki",
+    "price": 432,
+    "status": true,
+    "stock": 43,
+    "category": "PERRO",
+    "thumbnails": []
+  },
+  {
+    "id": 7,
+    "title": "Papa",
+    "description": "papas fritas",
+    "code": "939kd",
+    "price": 938,
+    "status": true,
+    "stock": 3939,
+    "category": "Verdura",
+    "thumbnails": []
+  },
+  {
+    "id": 8,
+    "title": "Ketchup",
+    "description": "ketchup",
+    "code": "939dk",
+    "price": 343,
+    "status": true,
+    "stock": 34,
+    "category": "Comida",
+    "thumbnails": []
+  },
+  {
+    "id": 10,
+    "title": "Mostaza",
+    "description": "mostaza",
+    "code": "84392",
+    "price": 329,
+    "status": true,
+    "stock": 9382,
+    "category": "comida",
+    "thumbnails": []
+  }
+]

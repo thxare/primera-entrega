@@ -1,0 +1,83 @@
+<button type="button" class="btn btn-primary" id="launchModalButton">
+  Crear nuevo producto
+</button>
+
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/api/products" method="POST" class="row g-3 needs-validation" novalidate>
+                    <div class="col-md-6">
+                        <label for="validationCustom01" class="form-label">Titulo</label>
+                        <input type="text" id="title" name="title" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid title.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationCustom01" class="form-label">Descripción</label>
+                        <input type="text" id="description" name="description" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid description.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationCustom01" class="form-label">Código</label>
+                        <input type="text" id="code" name="code" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid code.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationCustom01" class="form-label">Precio</label>
+                        <input type="number" id="price" name="price" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid price.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationCustom01" class="form-label">Stock</label>
+                        <input type="number" id="stock" name="stock" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid stock.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationCustom01" class="form-label">Categoria</label>
+                        <input type="text" id="category" name="category" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid category.
+                        </div>  
+                    </div>
+                    <div class="status">
+                        <label>Estado</label>
+                            <div class="checkbox-wrapper-12">
+                            <div class="cbx">
+                                <input checked="" type="checkbox" id="cbx-12">
+                                <label for="cbx-12"></label>
+                                <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+                                    <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                </svg>
+                            </div>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <filter id="goo-12">
+                                        <feGaussianBlur result="blur" stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+                                        <feColorMatrix result="goo-12" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" mode="matrix" in="blur"></feColorMatrix>
+                                        <feBlend in2="goo-12" in="SourceGraphic"></feBlend>
+                                    </filter>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="onSubmit" type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

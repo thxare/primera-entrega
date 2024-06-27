@@ -37,12 +37,14 @@ const renderProductos = (data) => {
     tdCategory.textContent = product.category;
     tr.appendChild(tdCategory);
     if (showDelete) {
+      const tdDiv = document.createElement("div");
       const tdDelete = document.createElement("button");
       tdDelete.className = "btn btn-danger deleteBtn";
       tdDelete.textContent = "x";
       tdDelete.type = "button";
       tdDelete.id = product.id;
-      tr.appendChild(tdDelete);
+      tdDiv.append(tdDelete)
+      tr.appendChild(tdDiv);
     }
 
     contenedorProductos.appendChild(tr);

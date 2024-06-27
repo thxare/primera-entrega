@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 export class CartManager {
-  static lastId = 0;
+  static ultId = 0;
   constructor(path) {
     this.carts = [];
     this.path = path;
@@ -16,31 +16,30 @@ export class CartManager {
       throw err;
     }
   }
-  async updateUid() {
-    const arrCarts = await this.loadCarts();
-    if (arrCarts.length > 0) {
-      CartManager.lastId = arrCarts.reduce((max, cart) =>
-        cart.id > max ? cart.id : max
-      );
-    }
-  }
 
   async saveCarts(arrCarts) {
     try {
-      fs.writeFileSync(this.path, JSON.stringify(arrCarts, null, 2), "utf8");
+      await fs.writeFile(this.path, JSON.stringify(arrCarts, null, 2), "utf8");
     } catch (err) {
       console.error("Error al guardar:", err);
+      throw err;
     }
   }
 
   async addNewCart(productos = []) {
     const arrCarts = await this.loadCarts();
+    if (arrCarts.length > 0) {
+      CartManager.ultId = arrCarts.reduce(
+        (maxId, cart) => Math.max(maxId, cart.id),
+        0
+      );
+    }
     const nuevoCarro = {
-      id: ++CartManager.lastId,
+      id: ++CartManager.ultId,
       productos,
     };
     arrCarts.push(nuevoCarro);
-    await this.saveCarts();
+    await this.saveCarts(arrCarts);
   }
 
   async addCart(idCart, idProduct) {
@@ -59,8 +58,9 @@ export class CartManager {
       };
       cart.productos.push(newProduct);
     }
+    arrCarts.push(cart);
 
-    await this.saveCarts();
+    await this.saveCarts(arrCarts);
   }
 
   async getCarts() {
@@ -91,6 +91,6 @@ export class CartManager {
       throw new Error("Carro no encontrado");
     }
     arrCarts.splice(index, 1);
-    await this.saveCarts();
+    await this.saveCarts(arrCarts);
   }
 }

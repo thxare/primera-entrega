@@ -1,16 +1,5 @@
 [
   {
-    "id": 5,
-    "title": "Leche",
-    "description": "Leche",
-    "code": "kle343",
-    "price": 43,
-    "status": true,
-    "stock": 38,
-    "category": "Lacteos",
-    "thumbnails": []
-  },
-  {
     "id": 6,
     "title": "Loki",
     "description": "Loki",

@@ -67,7 +67,6 @@ export class ProductManager {
       console.log("El código debe ser único");
       return;
     }
-
     if (
       title === undefined ||
       description === undefined ||

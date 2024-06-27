@@ -36,13 +36,14 @@ const renderProductos = (data) => {
     const tdCategory = document.createElement("td");
     tdCategory.textContent = product.category;
     tr.appendChild(tdCategory);
-
-    const tdDelete = document.createElement("button");
-    tdDelete.className = "btn btn-danger deleteBtn";
-    tdDelete.textContent = "x";
-    tdDelete.type = "button";
-    tdDelete.id = product.id;
-    tr.appendChild(tdDelete);
+    if (showDelete) {
+      const tdDelete = document.createElement("button");
+      tdDelete.className = "btn btn-danger deleteBtn";
+      tdDelete.textContent = "x";
+      tdDelete.type = "button";
+      tdDelete.id = product.id;
+      tr.appendChild(tdDelete);
+    }
 
     contenedorProductos.appendChild(tr);
   });

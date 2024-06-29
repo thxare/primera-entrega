@@ -6,7 +6,7 @@ import { productRouter } from "./src/routes/products.routes.js";
 import viewsRouter from "./src/routes/views.routes.js";
 
 const app = express();
-const PORT = 8080;
+const PORT = 8081;
 
 //Midleware
 app.use(express.urlencoded({ extended: true }));
@@ -35,26 +35,38 @@ const io = new Server(httpServer);
 io.on("connection", async (socket) => {
   console.log("Un cliente conectado");
 
-  socket.emit("productos", await productManager.getProducts());
+  try {
+    socket.emit("productos", await productManager.getProducts());
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+  }
 
   socket.on("eliminarProducto", async (id) => {
-    await productManager.deleteProductById(id);
-    io.sockets.emit("productos", await productManager.getProducts());
+    try {
+      await productManager.deleteProductById(id);
+      socket.emit("productos", await productManager.getProducts());
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+    }
   });
 
   socket.on(
     "agregarProducto",
     async ({ title, description, code, price, status, stock, category }) => {
-      await productManager.addProduct(
-        title,
-        description,
-        code,
-        price,
-        status,
-        stock,
-        category
-      );
-      io.sockets.emit("productos", await productManager.getProducts());
+      try {
+        await productManager.addProduct(
+          title,
+          description,
+          code,
+          price,
+          status,
+          stock,
+          category
+        );
+        socket.emit("productos", await productManager.getProducts());
+      } catch (error) {
+        console.error("Error al agregar producto:", error);
+      }
     }
   );
 });

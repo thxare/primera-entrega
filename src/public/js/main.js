@@ -6,6 +6,7 @@ socket.on("productos", (data) => {
 
 const renderProductos = (data) => {
   const contenedorProductos = document.getElementById("productList");
+  contenedorProductos.innerHTML = '';
   data.forEach((product) => {
     const tr = document.createElement("tr");
 
@@ -63,8 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.show();
     });
 });
-
-// socket.emit("eliminarProducto", btnDeleteId);
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form.needs-validation");

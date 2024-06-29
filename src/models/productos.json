@@ -1,38 +1,5 @@
 [
   {
-    "id": 6,
-    "title": "Loki",
-    "description": "Loki",
-    "code": "Loki",
-    "price": 432,
-    "status": true,
-    "stock": 43,
-    "category": "PERRO",
-    "thumbnails": []
-  },
-  {
-    "id": 7,
-    "title": "Papa",
-    "description": "papas fritas",
-    "code": "939kd",
-    "price": 938,
-    "status": true,
-    "stock": 3939,
-    "category": "Verdura",
-    "thumbnails": []
-  },
-  {
-    "id": 8,
-    "title": "Ketchup",
-    "description": "ketchup",
-    "code": "939dk",
-    "price": 343,
-    "status": true,
-    "stock": 34,
-    "category": "Comida",
-    "thumbnails": []
-  },
-  {
     "id": 10,
     "title": "Mostaza",
     "description": "mostaza",
@@ -41,6 +8,28 @@
     "status": true,
     "stock": 9382,
     "category": "comida",
+    "thumbnails": []
+  },
+  {
+    "id": 12,
+    "title": "Piña",
+    "description": "Piña",
+    "code": "ks2k",
+    "price": 1900,
+    "status": true,
+    "stock": 78,
+    "category": "Fruta",
+    "thumbnails": []
+  },
+  {
+    "id": 13,
+    "title": "Ketchup",
+    "description": "Ketchip",
+    "code": "Ket929",
+    "price": 9298,
+    "status": true,
+    "stock": 100,
+    "category": "Comida",
     "thumbnails": []
   }
 ]

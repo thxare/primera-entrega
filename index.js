@@ -6,7 +6,7 @@ import { productRouter } from "./src/routes/products.routes.js";
 import viewsRouter from "./src/routes/views.routes.js";
 
 const app = express();
-const PORT = 8081;
+const PORT = 8080;
 
 //Midleware
 app.use(express.urlencoded({ extended: true }));

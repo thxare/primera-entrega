@@ -28,46 +28,46 @@ const httpServer = app.listen(PORT, () => {
   console.log(`Escuchando en el puerto ${PORT}`);
 });
 
-import { ProductManager } from "./src/controllers/product-manager.js";
-const productManager = new ProductManager("./src/models/productos.json");
+// import { ProductManager } from "./src/controllers/product-manager.js";
+// const productManager = new ProductManager("./src/models/productos.json");
 
-const io = new Server(httpServer);
+// const io = new Server(httpServer);
 
-io.on("connection", async (socket) => {
-  console.log("Un cliente conectado");
+// io.on("connection", async (socket) => {
+//   console.log("Un cliente conectado");
 
-  try {
-    socket.emit("productos", await productManager.getProducts());
-  } catch (error) {
-    console.error("Error al obtener productos:", error);
-  }
+//   try {
+//     socket.emit("productos", await productManager.getProducts());
+//   } catch (error) {
+//     console.error("Error al obtener productos:", error);
+//   }
 
-  socket.on("eliminarProducto", async (id) => {
-    try {
-      await productManager.deleteProductById(id);
-      socket.emit("productos", await productManager.getProducts());
-    } catch (error) {
-      console.error("Error al eliminar producto:", error);
-    }
-  });
+//   socket.on("eliminarProducto", async (id) => {
+//     try {
+//       await productManager.deleteProductById(id);
+//       socket.emit("productos", await productManager.getProducts());
+//     } catch (error) {
+//       console.error("Error al eliminar producto:", error);
+//     }
+//   });
 
-  socket.on(
-    "agregarProducto",
-    async ({ title, description, code, price, status, stock, category }) => {
-      try {
-        await productManager.addProduct(
-          title,
-          description,
-          code,
-          price,
-          status,
-          stock,
-          category
-        );
-        socket.emit("productos", await productManager.getProducts());
-      } catch (error) {
-        console.error("Error al agregar producto:", error);
-      }
-    }
-  );
-});
+//   socket.on(
+//     "agregarProducto",
+//     async ({ title, description, code, price, status, stock, category }) => {
+//       try {
+//         await productManager.addProduct(
+//           title,
+//           description,
+//           code,
+//           price,
+//           status,
+//           stock,
+//           category
+//         );
+//         socket.emit("productos", await productManager.getProducts());
+//       } catch (error) {
+//         console.error("Error al agregar producto:", error);
+//       }
+//     }
+//   );
+// });

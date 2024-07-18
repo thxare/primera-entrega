@@ -1,7 +1,7 @@
 import express from "express";
 const cartRouter = express.Router();
-import { CartManager } from "../controllers/cart-manager.js";
-const cartManager = new CartManager("./src/models/carrito.json");
+import { CartManager } from "../dao/db/cart-manager-db.js";
+const cartManager = new CartManager();
 
 cartRouter.post("/", async (req, res) => {
   await cartManager.addNewCart();
@@ -19,7 +19,10 @@ cartRouter.get("/:cid", async (req, res) => {
 
 cartRouter.post("/:cid/product/:pid", async (req, res) => {
   try {
-    await cartManager.addCart(req.params.cid, parseInt(req.params.pid));
+    await cartManager.addProductToCart(
+      req.params.cid,
+      parseInt(req.params.pid)
+    );
     res.status(200).send("Se ha agregado un carro correctamente");
   } catch (err) {
     res.status(400).send("Ha ocurrido un error");

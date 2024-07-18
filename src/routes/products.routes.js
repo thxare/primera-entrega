@@ -1,7 +1,8 @@
 import express from "express";
 const productRouter = express.Router();
-import { ProductManager } from "../controllers/product-manager.js";
-const productManager = new ProductManager("./src/models/productos.json");
+import { ProductManager } from "../dao/db/product-manager-db.js";
+
+const productManager = new ProductManager();
 
 productRouter.get("/", async (req, res) => {
   try {
@@ -53,7 +54,6 @@ productRouter.post("/", async (req, res) => {
 productRouter.get("/:pid", async (req, res) => {
   try {
     const pid = req.params.pid;
-    console.log(pid);
     const productById = await productManager.getProductById(pid);
     res.status(200).json(productById);
   } catch (err) {

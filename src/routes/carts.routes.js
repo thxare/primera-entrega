@@ -19,10 +19,7 @@ cartRouter.get("/:cid", async (req, res) => {
 
 cartRouter.post("/:cid/product/:pid", async (req, res) => {
   try {
-    await cartManager.addProductToCart(
-      req.params.cid,
-      parseInt(req.params.pid)
-    );
+    await cartManager.addProductToCart(req.params.cid, req.params.pid);
     res.status(200).send("Se ha agregado un carro correctamente");
   } catch (err) {
     res.status(400).send("Ha ocurrido un error");

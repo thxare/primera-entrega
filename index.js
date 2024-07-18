@@ -4,9 +4,10 @@ import { engine } from "express-handlebars";
 import { cartRouter } from "./src/routes/carts.routes.js";
 import { productRouter } from "./src/routes/products.routes.js";
 import viewsRouter from "./src/routes/views.routes.js";
+import "./src/database.js";
 
 const app = express();
-const PORT = 8080;
+const PORT = 8081;
 
 //Midleware
 app.use(express.urlencoded({ extended: true }));

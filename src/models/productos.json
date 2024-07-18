@@ -1,6 +1,5 @@
 [
   {
-    "id": 10,
     "title": "Mostaza",
     "description": "mostaza",
     "code": "84392",
@@ -11,7 +10,6 @@
     "thumbnails": []
   },
   {
-    "id": 12,
     "title": "Piña",
     "description": "Piña",
     "code": "ks2k",
@@ -22,7 +20,6 @@
     "thumbnails": []
   },
   {
-    "id": 13,
     "title": "Ketchup",
     "description": "Ketchip",
     "code": "Ket929",

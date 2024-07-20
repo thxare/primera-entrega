@@ -7,7 +7,7 @@ import viewsRouter from "./src/routes/views.routes.js";
 import "./src/database.js";
 
 const app = express();
-const PORT = 8081;
+const PORT = 8080;
 
 //Midleware
 app.use(express.urlencoded({ extended: true }));

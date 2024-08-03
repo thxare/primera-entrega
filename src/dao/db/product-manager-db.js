@@ -39,7 +39,6 @@ export class ProductManager {
   async getProducts(filter = {}, options = {}) {
     try {
       const result = await ProductModel.paginate(filter, options);
-      console.log(result)
       result.docs = result.docs.map((doc) => doc.toObject());
       return result;
     } catch (err) {

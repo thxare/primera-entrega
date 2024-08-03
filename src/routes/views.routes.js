@@ -19,7 +19,6 @@ viewsRouter.get("/productos", async (req, res) => {
   };
   try {
     const productos = await productManager.getProducts({}, options);
-    console.log(productos.docs)
     res.render("home", { productos: productos.docs, ...productos });
   } catch (error) {
     console.error("Error al mostrar los productos", error);

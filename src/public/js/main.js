@@ -7,12 +7,11 @@ socket.on("productos", (data) => {
 const renderProductos = (data) => {
   const contenedorProductos = document.getElementById("productList");
   contenedorProductos.innerHTML = "";
-  console.log(data);
   data.docs.forEach((product) => {
     const tr = document.createElement("tr");
 
     const tdId = document.createElement("td");
-    tdId.textContent = product.id;
+    tdId.textContent = product._id;
     tr.appendChild(tdId);
 
     const tdTitle = document.createElement("td");
@@ -44,7 +43,7 @@ const renderProductos = (data) => {
       tdDelete.className = "btn btn-danger deleteBtn";
       tdDelete.textContent = "x";
       tdDelete.type = "button";
-      tdDelete.id = product.id;
+      tdDelete.id = product._id;
       tdDiv.append(tdDelete);
       tr.appendChild(tdDiv);
     }

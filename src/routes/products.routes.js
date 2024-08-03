@@ -6,10 +6,17 @@ const productManager = new ProductManager();
 
 productRouter.get("/", async (req, res) => {
   try {
-    const limit = req.query.limit;
-    const products = await productManager.getProducts();
+    const { limit = 10, page = 1, sort, ...query } = req.query;
+    const options = {
+      limit: parseInt(limit),
+      page: parseInt(page),
+      sort: sort ? JSON.parse(sort) : undefined,
+    };
+    const filter = {};
+
     if (limit) {
-      res.json(products.slice(0, limit));
+      const products = await productManager.getProducts(filter, options);
+      res.json(products);
     } else {
       res.json(products);
     }

@@ -36,10 +36,12 @@ export class ProductManager {
     await nuevoProducto.save();
   }
 
-  async getProducts() {
+  async getProducts(filter = {}, options = {}) {
     try {
-      const arrProducts = await ProductModel.find();
-      return arrProducts;
+      const result = await ProductModel.paginate(filter, options);
+      console.log(result)
+      result.docs = result.docs.map((doc) => doc.toObject());
+      return result;
     } catch (err) {
       console.log("Ha habido un error", err);
       throw err;

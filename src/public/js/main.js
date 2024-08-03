@@ -6,7 +6,8 @@ socket.on("productos", (data) => {
 
 const renderProductos = (data) => {
   const contenedorProductos = document.getElementById("productList");
-  contenedorProductos.innerHTML = '';
+  contenedorProductos.innerHTML = "";
+  console.log(data);
   data.forEach((product) => {
     const tr = document.createElement("tr");
 
@@ -44,7 +45,7 @@ const renderProductos = (data) => {
       tdDelete.textContent = "x";
       tdDelete.type = "button";
       tdDelete.id = product.id;
-      tdDiv.append(tdDelete)
+      tdDiv.append(tdDelete);
       tr.appendChild(tdDiv);
     }
 

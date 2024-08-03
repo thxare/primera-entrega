@@ -8,7 +8,7 @@ const renderProductos = (data) => {
   const contenedorProductos = document.getElementById("productList");
   contenedorProductos.innerHTML = "";
   console.log(data);
-  data.forEach((product) => {
+  data.docs.forEach((product) => {
     const tr = document.createElement("tr");
 
     const tdId = document.createElement("td");

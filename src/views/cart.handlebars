@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Carrito</h1>
+    <ul class="list-group">
+        {{#each products}}
+        <li class="list-group-item">
+            <p><strong>Producto:</strong> {{this.product.title}}</p>
+            <p><strong>Cantidad:</strong> {{this.quantity}}</p>
+        </li>
+        {{else}}
+        <li class="list-group-item">Carrito se encuentra sin productos</li>
+        {{/each}}
+    </ul>
+</div>
+
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+<script src="js/main.js"></script>

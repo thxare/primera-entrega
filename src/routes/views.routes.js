@@ -25,12 +25,12 @@ viewsRouter.get("/productos", async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
-viewsRouter.get("/carts/:cid", async (req, res) => {
+
+viewsRouter.get("/cart/:cid", async (req, res) => {
   const cartID = req.params.cid;
 
   try {
     const cart = await cartManager.getCartById(cartID);
-
     if (!cart) {
       console.log("No existe el carrito");
       return res.status(404).json({ error: "Carrito no encontrado" });
@@ -41,7 +41,7 @@ viewsRouter.get("/carts/:cid", async (req, res) => {
       quantity: item.quantity,
     }));
 
-    res.render("carts", { productos: productsInCart });
+    res.render("cart", { productos: productsInCart });
   } catch (error) {
     console.error("Error al obtener el carrito", error);
     res.status(500).json({ error: "Error interno del servidor" });

@@ -5,7 +5,7 @@ const cartManager = new CartManager();
 
 cartRouter.post("/", async (req, res) => {
   const newCart = await cartManager.addNewCart();
-  console.log("Se ha creado un nuevo carro")
+  console.log("Se ha creado un nuevo carro");
   res.status(200).json(newCart);
 });
 
@@ -33,8 +33,27 @@ cartRouter.post("/:cid/product/:pid", async (req, res) => {
 
 cartRouter.delete("/:cid", async (req, res) => {
   try {
-    await cartManager.deleteCartById(req.params.cid);
-    res.status(200).send("Carro eliminado");
+    await cartManager.deleteAllProducts(req.params.cid);
+    res.status(200).send("Productos eliminados");
+  } catch (err) {
+    res.status(400).send("Ha ocurrido un error");
+  }
+});
+
+cartRouter.delete("/:cid/products/:pid", async (req, res) => {
+  try {
+    await cartManager.deleteProductToCart(req.params.cid, req.params.pid);
+    res.status(200).send("Producto eliminado correctamente")
+  } catch (err) {
+    res.status(400).send("Ha ocurrido un error");
+  }
+});
+
+cartRouter.put("/:cid", async (req, res) => {
+  const updateCart = req.body;
+  try {
+    await cartManager.updateCartById(req.params.cid, updateCart);
+    res.status(200).send("Carro actualizado");
   } catch (err) {
     res.status(400).send("Ha ocurrido un error");
   }

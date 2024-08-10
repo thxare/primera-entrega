@@ -4,8 +4,9 @@ import { CartManager } from "../dao/db/cart-manager-db.js";
 const cartManager = new CartManager();
 
 cartRouter.post("/", async (req, res) => {
-  await cartManager.addNewCart();
-  res.status(200).send("Se ha agregado un nuevo carro");
+  const newCart = await cartManager.addNewCart();
+  console.log("Se ha creado un nuevo carro")
+  res.status(200).json(newCart);
 });
 
 cartRouter.get("/:cid", async (req, res) => {
@@ -31,8 +32,12 @@ cartRouter.post("/:cid/product/:pid", async (req, res) => {
 });
 
 cartRouter.delete("/:cid", async (req, res) => {
-  await cartManager.deleteCartById(req.params.cid);
-  res.status(200);
+  try {
+    await cartManager.deleteCartById(req.params.cid);
+    res.status(200).send("Carro eliminado");
+  } catch (err) {
+    res.status(400).send("Ha ocurrido un error");
+  }
 });
 
 export { cartRouter };

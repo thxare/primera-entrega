@@ -59,9 +59,12 @@ export class CartManager {
         console.log("El carrito no se ha encontrado");
         return;
       } else {
-        console.log("Producto eliminido con exito");
+        console.log("Carrito eliminido con exito");
         return deleted;
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log("Ha habido un error", err);
+      throw err;
+    }
   }
 }
